@@ -1,0 +1,22 @@
+NOTES ON ICONS
+==============
+
+The main loop kicks off two threads to load icons,
+	- the first for the root menu;
+	- the second for the rest (this one starts when the first is finished.)
+This allows the root-menu to be displayed quickly whilst the rest is loaded in
+the background.
+
+When jgmenu if first run, icon 'cache' is created at '~/.cache/jgmenu/icons/'.
+The cache consists of symlinks pointing to icons which match the name, size and
+theme. For example: folder -> /usr/share/icons/Adwaita/22x22/places/folder.png
+
+On subsequence runs, icon.c reads the symlinks, thus avoiding expensive
+operations searching for icons.
+
+The file index.theme contains the icon theme and size associated with the
+symlinks. If either of these is changed in the jgmenu config, the cache will
+be re-created on the next run.
+
+If an icon cannot be found during the cache creation, an empty file is created
+instead of the symlink.

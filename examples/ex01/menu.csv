@@ -1,0 +1,66 @@
+#
+# ex01
+#
+# Menu with widgets
+#
+
+@rect,,10,10,180,25,3,left,top,#666666 15,#000000 0,content
+@search,,10,10,180,25,3,left,top,#666666 90,#222222 3,Type to search...
+@icon,^root(submenu),10,50,24,24,3,left,top,#2222dd 50,#eeeeee 20,/usr/share/icons/Adwaita/24x24/emblems/emblem-favorite-symbolic.symbolic.png
+@icon,^root(submenu),44,50,24,24,3,left,top,#2222dd 50,#eeeeee 20,/usr/share/icons/Adwaita/24x24/emblems/emblem-system-symbolic.symbolic.png
+@icon,^root(submenu),78,50,24,24,3,left,top,#2222dd 50,#eeeeee 20,/usr/share/icons/Adwaita/24x24/emblems/emblem-photos-symbolic.symbolic.png
+
+jgmenu demo,^tag(root)
+directory,^checkout(submenu),folder-documents
+browser,firefox,web-browser
+file manager,pcmanfm,system-file-manager
+terminal,xterm,utilities-terminal
+leafpad,leafpad,leafpad
+gparted,gparted,gparted
+
+submenu,^tag(submenu)
+Image Viewer,gpicview ,gpicview
+Widget Factory,gtk3-widget-factory,gtk3-widget-factory
+TigerVNC Viewer,/usr/bin/vncviewer,tigervnc
+Icon Browser,gtk3-icon-browser,gtk3-icon-browser
+New private window,firefox -private-window,firefox
+MPlayer Media Player,mplayer ,mplayer
+Print Preview,evince-previewer ,document-print-preview
+View file,/usr/bin/gcr-viewer,document-print-preview
+GNU Image Manipulation Program,gimp-2.8 ,gimp
+PulseAudio Volume Control,pavucontrol,multimedia-volume-control
+urxvt,urxvt,utilities-terminal
+Document Viewer,evince ,evince
+CMake,cmake-gui ,CMakeSetup
+Privilege granting,gksu-properties,gksu.png
+Access Prompt,/usr/lib/gcr/gcr-prompter,security-medium
+Access Prompt,/usr/lib/gcr/gcr-prompter,security-medium
+File Manager PCManFM,pcmanfm ,system-file-manager
+Tint2,tint2,tint2
+Shortcut Editor,lxshortcut -i ,applications-other
+mtPaint,mtpaint ,mtpaint
+Avahi Zeroconf Browser,/usr/bin/avahi-discover,network-wired
+KeePassX,keepassx ,keepassx
+urxvt (client),urxvtc,utilities-terminal
+Avahi SSH Server Browser,/usr/bin/bssh,network-wired
+Avahi SSH Server Browser,/usr/bin/bssh,network-wired
+NetSurf Web Browser,netsurf ,netsurf.png
+Desktop Preferences,pcmanfm --desktop-pref,user-desktop
+urxvt (tabbed),urxvt-tabbed,utilities-terminal
+Root Terminal,gksu -l gnome-terminal,gksu-root-terminal
+Tint2 Settings,tint2conf,tint2conf
+GTK+ Demo,gtk3-demo,gtk3-demo
+Preferred Applications,libfm-pref-apps,preferences-desktop
+compton,compton --xrender-sync-fence,compton
+UXTerm,uxterm,xterm-color_48x48
+Archive Manager,file-roller ,file-roller
+Avahi VNC Server Browser,/usr/bin/bvnc,network-wired
+FLUID,fluid ,fluid
+Customize Look and Feel,lxappearance,preferences-desktop-theme
+Dropbox,dropbox,dropbox
+XTerm,xterm,xterm-color_48x48
+Openbox,openbox,openbox
+Adobe Flash Player,flash-player-properties,flash-player-properties
+Links,xlinks -g,links_32x32.xpm
+GParted,/usr/bin/gparted_polkit ,gparted
+Leafpad,leafpad ,leafpad
