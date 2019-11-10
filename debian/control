@@ -9,6 +9,7 @@ Build-Depends: debhelper-compat (= 12), libx11-dev, libxrandr-dev, libcairo2-dev
  pkg-config, libgtk-3-dev, xfce4-panel-dev
 Vcs-Git: https://github.com/mati75/jgmenu.git
 Vcs-Browser: https://github.com/mati75/jgmenu
+Rules-Requires-Root: no
 
 Package: jgmenu
 Architecture: any
@@ -21,10 +22,8 @@ Description: Simple X11 menu
  scripting, ricing and tweaking
 
 Package: jgmenu-xfce4-panel-applet
-Section: x11
 Architecture: any
 Multi-Arch: same
-Depends: ${shlibs:Depends}, ${misc:Depends}, jgmenu (= ${source:Version}),
+Depends: ${shlibs:Depends}, ${misc:Depends}, jgmenu (= ${binary:Version})
 Description: xfce4-panel applet for jgmenu
  An xfce4-panel applet for jgmenu
-

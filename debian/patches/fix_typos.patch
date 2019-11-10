@@ -1,0 +1,42 @@
+Description: Fix typos reported by lintian
+Author: Mateusz Łukasik <mati75@linuxmint.pl>
+Last-Update: 2019-11-10
+
+--- a/docs/manual/jgmenu.1
++++ b/docs/manual/jgmenu.1
+@@ -365,7 +365,7 @@ Rectangle with a 1px thick border drawn
+ .TP
+ .B \f[C]search\f[]
+ Search box showing the current filter (what the user has typed) or the
+-specifed \f[C]text\f[] if no filter has been invoked.
++specified \f[C]text\f[] if no filter has been invoked.
+ .RS
+ .RE
+ .TP
+@@ -946,13 +946,13 @@ Border color of the currently selected m
+ .RE
+ .TP
+ .B \f[C]color_sep_fg\f[] = \f[B]color\f[] (default #ffffff 20)
+-Font (foreground) colour of seperators without text
++Font (foreground) colour of separators without text
+ .RS
+ .RE
+ .TP
+ .B \f[C]color_title_fg\f[] = \f[B]color\f[] (default #eeeeee 50)
+ Font (foreground) colour of separators with text.
+-The font colour can be overriden by \f[C]sep_markup\f[]
++The font colour can be overridden by \f[C]sep_markup\f[]
+ .RS
+ .RE
+ .TP
+--- a/src/ipc.c
++++ b/src/ipc.c
+@@ -125,7 +125,7 @@ static void align_to_horizontal_panel(st
+ {
+ 	if (button.x1 >= geo_get_screen_x0() + geo_get_screen_width() ||
+ 	    button.x1 < geo_get_screen_x0()) {
+-		warn("pointer outside IPC varable range");
++		warn("pointer outside IPC variable range");
+ 		return;
+ 	}
+ 	if (config.verbosity == 4)
