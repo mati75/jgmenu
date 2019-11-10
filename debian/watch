@@ -1,0 +1,4 @@
+version=4
+opts=filenamemangle=s/.+\/v?(\d\S*)\.tar\.gz/jgmenu-$1\.tar\.gz/ \
+  https://github.com/johanmalm/jgmenu/tags .*/v?(\d\S*)\.tar\.gz
+
