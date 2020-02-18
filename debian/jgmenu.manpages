@@ -1,8 +1,2 @@
-docs/manual/jgmenu.1
-docs/manual/jgmenu_run.1
-docs/manual/jgmenu-pmenu.1
-docs/manual/jgmenu-lx.1
-docs/manual/jgmenu-ob.1
-docs/manual/jgmenu-apps.1
-docs/manual/jgmenututorial.7
-docs/manual/jgmenuunicode.7
+usr/share/man/man1/*.1
+usr/share/man/man7/*.7

@@ -1,2 +1,4 @@
 usr/bin/*
 usr/lib/jgmenu/*
+usr/share/applications/jgmenu.desktop
+usr/share/icons/hicolor/scalable/apps/jgmenu.svg
