@@ -29,14 +29,3 @@ Last-Update: 2019-11-10
  .RS
  .RE
  .TP
---- a/src/ipc.c
-+++ b/src/ipc.c
-@@ -125,7 +125,7 @@ static void align_to_horizontal_panel(st
- {
- 	if (button.x1 >= geo_get_screen_x0() + geo_get_screen_width() ||
- 	    button.x1 < geo_get_screen_x0()) {
--		warn("pointer outside IPC varable range");
-+		warn("pointer outside IPC variable range");
- 		return;
- 	}
- 	if (config.verbosity == 4)
