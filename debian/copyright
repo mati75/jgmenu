@@ -2,14 +2,14 @@ Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Source: https://github.com/johanmalm/jgmenu.git
 
 Files: *
-Copyright: 2014-2019 Johan Malm <jgm323@gmail.com>
+Copyright: 2014-2020 Johan Malm <jgm323@gmail.com>
            2016-2017 Ovidiu M <mrovi9000@gmail.com>
 License: GPL-2+
 
 Files: debian/*
 Copyright: 2014-2019 Johan Malm <jgm323@gmail.com>
            2016-2017 Ovidiu M <mrovi9000@gmail.com>
-           2019 Mateusz Łukasik <mati75@linuxmint.pl>
+           2019-2020 Mateusz Łukasik <mati75@linuxmint.pl>
 License: GPL-2+
 
 License: GPL-2+
