@@ -2,11 +2,11 @@ Source: jgmenu
 Maintainer: Mateusz Łukasik <mati75@linuxmint.pl>
 Section: x11
 Priority: optional
-Standards-Version: 4.4.1
+Standards-Version: 4.5.0
 Homepage: https://jgmenu.github.io/
-Build-Depends: debhelper-compat (= 12), libx11-dev, libxrandr-dev, libcairo2-dev,
+Build-Depends: debhelper-compat (= 13), libx11-dev, libxrandr-dev, libcairo2-dev,
  libpango1.0-dev, librsvg2-dev, libxml2-dev, libglib2.0-dev, libmenu-cache-dev,
- pkg-config, libgtk-3-dev, xfce4-panel-dev
+ pkg-config, libgtk-3-dev, libxfce4panel-2.0-dev
 Vcs-Git: https://github.com/mati75/jgmenu.git
 Vcs-Browser: https://github.com/mati75/jgmenu
 Rules-Requires-Root: no
