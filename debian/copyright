@@ -1,17 +1,109 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: jgmenu
+Upstream-Contact: Johan Malm <jgm323@gmail.com>
 Source: https://github.com/johanmalm/jgmenu.git
 
 Files: *
-Copyright: 2014-2020 Johan Malm <jgm323@gmail.com>
+Copyright: 2014-2021 Johan Malm <jgm323@gmail.com>
            2016-2017 Ovidiu M <mrovi9000@gmail.com>
 License: GPL-2+
 
 Files: debian/*
 Copyright: 2014-2019 Johan Malm <jgm323@gmail.com>
            2016-2017 Ovidiu M <mrovi9000@gmail.com>
-           2019-2020 Mateusz Łukasik <mati75@linuxmint.pl>
+           2019-2021 Mateusz Łukasik <mati75@linuxmint.pl>
 License: GPL-2+
 
+Files: src/charset.c
+ src/charset.h
+Copyright: 2011, Joseph A. Adams (joeyadams3.14159@gmail.com)
+License: Expat
+
+Files: tests/Makefile
+ tests/sharness.sh
+Copyright: 2005-2012, Git project
+  2005-2012, Junio C Hamano
+  2011-2012, Mathias Lafeldt
+License: GPL-2+
+
+Files: src/unix_sockets.c
+ src/unix_sockets.h
+Copyright: Michael Kerrisk, 2016.
+License: LGPL-3+
+ This file is free software; you can redistribute it and/or modify it
+ under the terms of the GNU Lesser General Public License as
+ published by the Free Software Foundation; either version 3 of the
+ License, or (at your option) any later version.
+ .
+ This file is distributed in the hope that it will be useful, but
+ WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Lesser General Public License for more details.
+ .
+ You should have received a copy of the GNU Lesser General Public License
+ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ .
+ On Debian systems, the complete text of the GNU Lesser General
+ Public License version 3 can be found in `/usr/share/common-licenses/LGPL-3'
+
+Files: scripts/checkpatch.pl
+Copyright: 2001, Dave Jones
+  2005, Joel Schopp <jschopp@austin.ibm.com>
+  2008-2010, Andy Whitcroft <apw@canonical.com>
+License: GPL-2+
+
+Files: scripts/checkbashisms.pl
+Copyright: 1998, Richard Braakman
+  2002, Josip Rodin
+  2003, Julian Gilbey <jdg@debian.org>
+License: GPL-2+
+
+Files: tests/aggregate-results.sh
+Copyright: 2008-2012, Git project
+License: GPL-2+
+
+Files: src/xpm-loader.c
+Copyright: 1999, Mark Crichton
+  1999, The Free Software Foundation
+License: LGPL-2+
+ This file is free software; you can redistribute it and/or modify it
+ under the terms of the GNU Library General Public License as
+ published by the Free Software Foundation; either version 2 of the
+ License, or (at your option) any later version.
+ .
+ This file is distributed in the hope that it will be useful, but
+ WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Lesser General Public License for more details.
+ .
+ You should have received a copy of the GNU Library General Public License
+ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ .
+ On Debian systems, the complete text of the GNU Lesser General
+ Public License version 2 can be found in `/usr/share/common-licenses/LGPL-2'.
+
+Files: src/xsettings.c
+Copyright: Owen Taylor, Red Hat, Inc.
+License: Expat
+ Permission is hereby granted, free of charge, to any person obtaining a copy of
+ this software and associated documentation files (the "Software"), to deal in
+ the Software without restriction, including without limitation the rights to
+ use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+ the Software, and to permit persons to whom the Software is furnished to do so,
+ subject to the following conditions:
+ .
+ The above copyright notice and this permission notice shall be included in all
+ copies or substantial portions of the Software.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+ FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+ IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Files: src/xsettings-helper.c
+Copyright: 2016, Ovidiu M <mrovi9000@gmail.com>
 License: GPL-2+
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License version 2

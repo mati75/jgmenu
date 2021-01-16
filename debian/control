@@ -2,7 +2,7 @@ Source: jgmenu
 Maintainer: Mateusz Łukasik <mati75@linuxmint.pl>
 Section: x11
 Priority: optional
-Standards-Version: 4.5.0
+Standards-Version: 4.5.1
 Homepage: https://jgmenu.github.io/
 Build-Depends: debhelper-compat (= 13), libx11-dev, libxrandr-dev, libcairo2-dev,
  libpango1.0-dev, librsvg2-dev, libxml2-dev, libglib2.0-dev, libmenu-cache-dev,
@@ -26,4 +26,8 @@ Architecture: any
 Multi-Arch: same
 Depends: ${shlibs:Depends}, ${misc:Depends}, jgmenu (= ${binary:Version})
 Description: xfce4-panel applet for jgmenu
- An xfce4-panel applet for jgmenu
+ A stand-alone, contemporary-looking menu application for Linux and BSD.
+ Independent of window manager and panel. Designed for customisation,
+ scripting, ricing and tweaking
+ .
+ This package provides xfce4-panel applet for jgmenu
