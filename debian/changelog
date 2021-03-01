@@ -1,5 +1,5 @@
-jgmenu (4.3.0-1) UNRELEASED; urgency=medium
+jgmenu (4.3.0-1) unstable; urgency=medium
 
   * Initial release. (Closes: #882210)
 
- -- Mateusz Łukasik <mati75@linuxmint.pl>  Sun, 10 Nov 2019 13:34:04 +0100
+ -- Mateusz Łukasik <mati75@linuxmint.pl>  Sun, 28 Feb 2021 21:15:19 +0100
