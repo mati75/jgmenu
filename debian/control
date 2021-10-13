@@ -14,7 +14,7 @@ Rules-Requires-Root: no
 Package: jgmenu
 Architecture: any
 Multi-Arch: foreign
-Depends: ${shlibs:Depends}, ${misc:Depends}, python3
+Depends: ${shlibs:Depends}, ${misc:Depends}, python3:any
 Suggests: lxmenu-data
 Description: Simple X11 menu
  A stand-alone, contemporary-looking menu application for Linux and BSD.
