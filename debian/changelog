@@ -1,5 +1,6 @@
-jgmenu (4.3.0-2) UNRELEASED; urgency=medium
+jgmenu (4.4.0-1) UNRELEASED; urgency=medium
 
+  * New upstream release.
   * Enable install lx plugin. (Closes: #983907)
 
  -- Mateusz Łukasik <mati75@linuxmint.pl>  Sun, 28 Mar 2021 18:29:08 +0200
