@@ -18,6 +18,7 @@
 #include "charset.h"
 #include "compat.h"
 #include "lang.h"
+#include "isprog.h"
 #include "banned.h"
 
 static struct app *apps;
@@ -45,6 +46,10 @@ static void parse_line(char *line, struct app *app, int *is_desktop_entry)
 		strlcpy(app->generic_name, value, sizeof(app->generic_name));
 	} else if (!strcmp("Exec", key)) {
 		strlcpy(app->exec, value, sizeof(app->exec));
+	} else if (!strcmp("TryExec", key)) {
+		strlcpy(app->tryexec, value, sizeof(app->tryexec));
+	} else if (!strcmp("Path", key)) {
+		strlcpy(app->working_dir, value, sizeof(app->working_dir));
 	} else if (!strcmp("Icon", key)) {
 		strlcpy(app->icon, value, sizeof(app->icon));
 	} else if (!strcmp("Categories", key)) {
@@ -90,6 +95,41 @@ static bool is_duplicate_desktop_file(char *filename)
 	return false;
 }
 
+static void delchar(char *p)
+{
+	size_t len = strlen(p);
+
+	memmove(p, p + 1, len + 1);
+	*(p + len) = '\0';
+}
+
+
+/*
+ * Remove all %? fields from .desktop Exec= field
+ * Note:
+ *  (a) %% which becomes %
+ *  (b) backslash escaped characters are resolved
+ */
+static void strip_exec_field_codes(char **exec)
+{
+	if (!**exec || !*exec)
+		return;
+	for (char *p = *exec; *p; p++) {
+		if (*p == '\\') {
+			delchar(p);
+			continue;
+		}
+		if (*p == '%') {
+			delchar(p);
+			if (*p == '\0')
+				break;
+			if (*p != '%')
+				delchar(p);
+		}
+	}
+	rtrim(exec);
+}
+
 static struct app *grow_vector_by_one_app(void)
 {
 	struct app *app;
@@ -127,6 +167,10 @@ static int add_app(FILE *fp, char *filename)
 	strlcpy(app->filename, filename, sizeof(app->filename));
 	p = &app->exec[0];
 	strip_exec_field_codes(&p);
+
+	if (app->tryexec[0] != '\0' && !isprog(app->tryexec))
+		app->tryexec_not_in_path = true;
+
 	return 0;
 }
 
@@ -165,10 +209,17 @@ static void traverse_directory(const char *path)
 	if (!dp)
 		return;
 	while ((entry = readdir(dp))) {
-		if (!strncmp(entry->d_name, ".", 1) ||
-		    !strncmp(entry->d_name, "..", 2))
-			continue;
-		process_file(entry->d_name, path);
+		if (entry->d_type == DT_DIR) {
+			if (entry->d_name[0] != '.') {
+				char new_path[PATH_MAX];
+
+				snprintf(new_path, PATH_MAX, "%s%s/", path,
+					 entry->d_name);
+				traverse_directory(new_path);
+			}
+		} else if (entry->d_type == DT_REG || entry->d_type == DT_LNK) {
+			process_file(entry->d_name, path);
+		}
 	}
 	closedir(dp);
 }
