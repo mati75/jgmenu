@@ -312,22 +312,3 @@ void msleep(unsigned int duration)
 	ts.tv_nsec =  msec * 1000000;
 	nanosleep(&ts, NULL);
 }
-
-void strip_exec_field_codes(char **exec)
-{
-	char *p;
-
-	if (!**exec || !*exec)
-		return;
-	for (p = *exec; *p; p++) {
-		if (*p == '%') {
-			*p = ' ';
-			++p;
-			if (*p == '\0')
-				break;
-			if (*p != '%')
-				*p = ' ';
-		}
-	}
-	rtrim(exec);
-}
