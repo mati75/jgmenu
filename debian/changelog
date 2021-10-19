@@ -1,11 +1,11 @@
-jgmenu (4.4.0-1) UNRELEASED; urgency=medium
+jgmenu (4.4.0-1) unstable; urgency=medium
 
   * New upstream release.
   * Enable install lx plugin. (Closes: #983907)
   * Bump Standards Version to 4.6.0.
   * Change depends to python3:any.
 
- -- Mateusz Łukasik <mati75@linuxmint.pl>  Sun, 28 Mar 2021 18:29:08 +0200
+ -- Mateusz Łukasik <mati75@linuxmint.pl>  Wed, 13 Oct 2021 17:27:44 +0200
 
 jgmenu (4.3.0-1) unstable; urgency=medium
 
