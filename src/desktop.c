@@ -9,6 +9,7 @@
 #include <string.h>
 #include <dirent.h>
 #include <stdbool.h>
+#include <glib.h>
 
 #include "desktop.h"
 #include "xdgdirs.h"
@@ -87,8 +88,6 @@ static bool is_duplicate_desktop_file(char *filename)
 	if (!filename)
 		return false;
 	for (i = 0; i < nr_apps; i++) {
-		if (!apps[i].filename)
-			continue;
 		if (!strcmp(apps[i].filename, filename))
 			return true;
 	}
@@ -99,7 +98,7 @@ static void delchar(char *p)
 {
 	size_t len = strlen(p);
 
-	memmove(p, p + 1, len + 1);
+	memmove(p, p + 1, len);
 	*(p + len) = '\0';
 }
 
@@ -228,9 +227,18 @@ static int compare_app_name(const void *a, const void *b)
 {
 	const struct app *aa = (struct app *)a;
 	const struct app *bb = (struct app *)b;
+	const char *aa_name, *bb_name;
+	int ret;
 
 	BUG_ON(!aa->name || !bb->name);
-	return strcasecmp(aa->name, bb->name);
+	aa_name = aa->name_localized[0] != '\0' ? aa->name_localized : aa->name;
+	bb_name = bb->name_localized[0] != '\0' ? bb->name_localized : bb->name;
+	aa_name = g_utf8_casefold(aa_name, -1);
+	bb_name = g_utf8_casefold(bb_name, -1);
+	ret = strcmp(aa_name, bb_name);
+	xfree(aa_name);
+	xfree(bb_name);
+	return ret;
 }
 
 struct app *desktop_read_files(void)
