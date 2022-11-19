@@ -1,9 +1,9 @@
-jgmenu (4.4.1-1) UNRELEASED; urgency=medium
+jgmenu (4.4.1-1) unstable; urgency=medium
 
   * New upstream release.
   * Bump Standards Version to 4.6.1.
 
- -- Mateusz Łukasik <mati75@linuxmint.pl>  Sun, 30 Oct 2022 21:40:22 +0100
+ -- Mateusz Łukasik <mati75@linuxmint.pl>  Mon, 14 Nov 2022 22:34:28 +0100
 
 jgmenu (4.4.0-1) unstable; urgency=medium
 
