@@ -1,0 +1,20 @@
+From 87994d1b8c195bae2be438f68019d92ceea2d656 Mon Sep 17 00:00:00 2001
+From: Johan Malm <jgm323@gmail.com>
+Date: Wed, 8 Feb 2023 22:09:33 +0000
+Subject: [PATCH] contrib/xfce4-panel: add X-XFCE-API=2.0 to .desktop file
+
+...to make the plug work with the latest xfce4-panel
+---
+ contrib/xfce4-panel/jgmenu-applet.desktop | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/contrib/xfce4-panel/jgmenu-applet.desktop b/contrib/xfce4-panel/jgmenu-applet.desktop
+index 74af4a8d..253fd78c 100644
+--- a/contrib/xfce4-panel/jgmenu-applet.desktop
++++ b/contrib/xfce4-panel/jgmenu-applet.desktop
+@@ -7,4 +7,5 @@ Icon=jgmenu
+ X-XFCE-Module=jgmenu
+ X-XFCE-Internal=true
+ X-XFCE-Unique=false
++X-XFCE-API=2.0
+ 

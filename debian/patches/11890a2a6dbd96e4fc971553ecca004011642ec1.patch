@@ -1,0 +1,32 @@
+From 11890a2a6dbd96e4fc971553ecca004011642ec1 Mon Sep 17 00:00:00 2001
+From: Florian Weimer <fweimer@redhat.com>
+Date: Fri, 23 Dec 2022 17:36:17 +0100
+Subject: [PATCH] contrib: Fix xfce4-panel registration
+
+Presumably due to header file reorganization,
+
+XFCE_PANEL_PLUGIN_REGISTER(jgmenu_construct);
+
+did not have any effect anymore because the macro is not defined
+in <libxfce4panel/xfce-panel-plugin.h> anymore.  Current GCC version
+parse this line as a declaration of a function called
+XFCE_PANEL_PLUGIN_REGISTER with an implicit int return type
+and without a parameter list/prototype, which is the reason why this
+did not result in a compilation error.
+---
+ contrib/xfce4-panel/jgmenu-applet.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/contrib/xfce4-panel/jgmenu-applet.c b/contrib/xfce4-panel/jgmenu-applet.c
+index 820c3b60..6594b3f9 100644
+--- a/contrib/xfce4-panel/jgmenu-applet.c
++++ b/contrib/xfce4-panel/jgmenu-applet.c
+@@ -5,7 +5,7 @@
+ */
+ 
+ #include <libxfce4util/libxfce4util.h>
+-#include <libxfce4panel/xfce-panel-plugin.h>
++#include <libxfce4panel/libxfce4panel.h>
+ 
+ #define DEFAULT_ICON_NAME "jgmenu"
+ #define DEFAULT_TOOLTIP_MESSAGE "Applications Menu"
