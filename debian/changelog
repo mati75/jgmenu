@@ -1,13 +1,15 @@
-jgmenu (4.4.1-2) UNRELEASED; urgency=medium
+jgmenu (4.4.1-2) unstable; urgency=medium
 
   [ Debian Janitor ]
   * Set upstream metadata fields: Bug-Database, Bug-Submit, Repository-Browse.
 
   [ Mateusz Łukasik ]
-  * Add cherry-pick from upstream to fix working with xfce4-panel.
+  * Backport upstream changes related to fix working with xfce4-panel.
+    (Closes: #1063667)
   * Bump Standards Version to 4.6.2.
+  * Add python3-gi, x11-xserver-utils to depends.
 
- -- Debian Janitor <janitor@jelmer.uk>  Sun, 20 Nov 2022 07:08:19 -0000
+ -- Mateusz Łukasik <mati75@linuxmint.pl>  Fri, 16 Feb 2024 20:37:07 +0100
 
 jgmenu (4.4.1-1) unstable; urgency=medium
 
