@@ -1,3 +1,11 @@
+jgmenu (4.5.0-1) UNRELEASED; urgency=medium
+
+  * New upstream release.
+  * Drop all patches included upstream.
+  * Add libxfce4ui-2-dev to B-D. (Closes: #1091058)
+
+ -- Mateusz Łukasik <mati75@linuxmint.pl>  Tue, 31 Dec 2024 19:47:50 +0100
+
 jgmenu (4.4.1-2) unstable; urgency=medium
 
   [ Debian Janitor ]
