@@ -19,13 +19,18 @@ CFLAGS  += -g -Wall -Os -std=gnu99
 CFLAGS  += -Wextra -Wdeclaration-after-statement -Wno-format-zero-length \
 	   -Wold-style-definition -Woverflow -Wpointer-arith \
 	   -Wstrict-prototypes -Wunused -Wvla -Wunused-result
-CFLAGS  += -Wno-unused-parameter
+CFLAGS  += -Wno-unused-parameter -Wno-expansion-to-defined
 CFLAGS  += -DVERSION='"$(VER)"'
 
 ifdef ASAN
 ASAN_FLAGS = -O0 -fsanitize=address -fno-common -fno-omit-frame-pointer -rdynamic
 CFLAGS    += $(ASAN_FLAGS)
 LDFLAGS   += $(ASAN_FLAGS) -fuse-ld=gold
+endif
+
+ifdef RSVG
+RSVG_LIB	= librsvg-2.0
+RSVG_FLAGS	= -DRSVG=1
 endif
 
 ifndef VERBOSE
