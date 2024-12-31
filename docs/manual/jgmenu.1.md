@@ -47,7 +47,6 @@ field separator:
   (3) icon  
   (4) working directory  
   (5) metadata  
-  (6) execute without "sh -c" wrapper  
 
 For example:
 
@@ -82,6 +81,17 @@ For example:
 
 :   The description field is parsed as pango markup, so `<`, `>`, and `&`
     need to be escaped as `&lt;`, `&gt;`, and `&amp;` respectively.
+
+`"`
+
+:   Unlike most CSV implementations, a single instance of a double quote (`"`)
+    is not considered a special character. The reason for this is to let users
+    write commands with double quotes without having to escape them.
+
+`"""`
+
+:   Use three quotes `"""` to begin and to end a fully quoted value. The primary
+    use case for this is when a comma is needed within a value.
 
 ## Markup
 
@@ -646,7 +656,7 @@ Here follow some specific types:
     ^sep(foo).
 
     See the following link for pango <span> attributes:
-    [https://developer.gnome.org/pango/stable/pango-Markup.html](https://developer.gnome.org/pango/stable/pango-Markup.html)
+    [https://docs.gtk.org/Pango/pango_markup.html](https://docs.gtk.org/Pango/pango_markup.html)
 
     Keywords include (but are not limited to):
 
@@ -714,6 +724,10 @@ Here follow some specific types:
 `arrow_width` = __integer__ (default 15)
 
 :   Width allowed for `arrow_string`. Set to 0 to hide arrow.
+
+`search_empty_string` = __string__ (default `<empty>`)
+
+:   String to show when no entries match a search.
 
 `color_menu_bg` = __color__ (default #000000 100)
 

@@ -135,7 +135,7 @@ static void del_beyond_root(void);
 
 static void init_empty_item(void)
 {
-	empty_item.name = xstrdup("&lt;empty&gt;");
+	empty_item.name = xstrdup(config.search_empty_string);
 	empty_item.cmd = xstrdup(":");
 	empty_item.iconname = NULL;
 	empty_item.working_dir = NULL;
@@ -337,14 +337,15 @@ static void add_if_unique(struct item *item)
 {
 	struct item *p;
 
-	if (!item->cmd)
-		return;
+	if (!item->cmd || !*item->cmd)
+		goto add;
 	list_for_each_entry(p, &menu.filter, filter) {
-		if (!p->cmd)
+		if (!p->cmd || !*p->cmd)
 			continue;
 		if (!strcmp(item->cmd, p->cmd))
 			return;
 	}
+add:
 	list_add_tail(&item->filter, &menu.filter);
 }
 
@@ -648,12 +649,12 @@ static void draw_menu(void)
 	ui_clear_canvas();
 	if (config.menu_gradient_pos != ALIGNMENT_NONE) {
 		ui_draw_rectangle_gradient(0, 0, w, geo_get_menu_height(), config.menu_radius,
-				config.menu_border, 1, config.color_menu_bg, config.color_menu_bg_to, config.menu_gradient_pos);
+					   config.menu_border, 1, config.color_menu_bg,
+					   config.color_menu_bg_to, config.menu_gradient_pos);
 	} else {
 		ui_draw_rectangle(0, 0, w, geo_get_menu_height(), config.menu_radius,
-				config.menu_border, 1, config.color_menu_bg);
+				  config.menu_border, 1, config.color_menu_bg);
 	}
-
 
 	/* Draw menu border */
 	if (config.menu_border)
@@ -1033,6 +1034,11 @@ static void awake_menu(void)
 		ipc_align_based_on_env_vars();
 		update(1);
 	}
+
+	/* Remove previous selection on awake */
+	menu.sel = NULL;
+	draw_menu();
+
 	XMapWindow(ui->dpy, ui->w[ui->cur].win);
 	ui_map_window(geo_get_menu_width(), geo_get_menu_height());
 	XRaiseWindow(ui->dpy, ui->w[ui->cur].win);
@@ -1490,7 +1496,7 @@ static void checkout_parent(void)
 
 static void clear_self_pipe(void)
 {
-	fd_set readfds;
+	fd_set readfds = { 0 };
 
 	if (!FD_ISSET(pipe_fds[0], &readfds))
 		return;
@@ -1641,9 +1647,11 @@ static void key_event(XKeyEvent *ev)
 	if (ui_has_child_window_open(menu.current_node->wid))
 		del_beyond_current();
 
-	/* menu.sel == NULL could be caused by pointer movement */
-	if (!menu.sel)
-		menu.sel = menu.current_node->last_sel;
+	/*
+	 * We accept menu.sel == NULL here
+	 * This will be the case on initial launch, awake or if the pointer
+	 * has been moved outside the menu window
+	 */
 
 	switch (ksym) {
 	case XK_Tab:
@@ -1690,7 +1698,10 @@ static void key_event(XKeyEvent *ev)
 		}
 		if (filter_head() == &empty_item)
 			break;
-		if (menu.sel == first_selectable()) {
+
+		if (!menu.sel) {
+			menu.sel = last_selectable();
+		} else if (menu.sel == first_selectable()) {
 			/* bounce to bottom */
 			menu.last = filter_tail();
 			menu.first = fill_from_bottom(menu.last);
@@ -1740,7 +1751,7 @@ static void key_event(XKeyEvent *ev)
 		break;
 	case XK_Return:
 	case XK_KP_Enter:
-		if (menu.sel->selectable)
+		if (menu.sel && menu.sel->selectable)
 			action_cmd(menu.sel->cmd, menu.sel->working_dir);
 		break;
 	case XK_Down:
@@ -1752,7 +1763,10 @@ static void key_event(XKeyEvent *ev)
 		}
 		if (filter_head() == &empty_item)
 			break;
-		if (menu.sel == last_selectable()) {
+
+		if (!menu.sel) {
+			menu.sel = first_selectable();
+		} else if (menu.sel == last_selectable()) {
 			menu.first = filter_head();
 			menu.last = fill_from_top(menu.first);
 			menu.sel = first_selectable();
@@ -1774,10 +1788,12 @@ static void key_event(XKeyEvent *ev)
 		update(1);
 		break;
 	case XK_Right:
-		if (!strncmp(menu.sel->cmd, "^checkout(", 10) ||
-		    !strncmp(menu.sel->cmd, "^root(", 6) ||
-		    !strncmp(menu.sel->cmd, "^pipe(", 6))
-			action_cmd(menu.sel->cmd, NULL);
+		if (menu.sel) {
+			if (!strncmp(menu.sel->cmd, "^checkout(", 10) ||
+			    !strncmp(menu.sel->cmd, "^root(", 6) ||
+			    !strncmp(menu.sel->cmd, "^pipe(", 6))
+				action_cmd(menu.sel->cmd, NULL);
+		}
 		break;
 	case XK_F5:
 		restart();
@@ -1869,11 +1885,12 @@ static void mouse_release(XEvent *e)
 
 	/* left-click */
 	if (ev->button == Button1) {
-		char *ret;
+		char *ret = NULL;
 
 		/* widgets */
 		widgets_set_pointer_position(mouse_coords.x, mouse_coords.y);
-		ret = widgets_get_selection_action();
+		if (widgets_mouseover() == 1)
+			ret = widgets_get_selection_action();
 		if (ret && ret[0] != '\0') {
 			action_cmd(ret, NULL);
 			return;
@@ -2473,10 +2490,9 @@ static void read_tint2rc(void)
 		info("using BunsenLabs tint2 session file");
 		t2conf_parse(bl.buf, geo_get_screen_width(),
 			     geo_get_screen_height());
-	} else {
-		t2conf_parse(NULL, geo_get_screen_width(),
-			     geo_get_screen_height());
+		goto out;
 	}
+	t2conf_parse(NULL, geo_get_screen_width(), geo_get_screen_height());
 out:
 	free(bl.buf);
 }
@@ -2724,6 +2740,8 @@ int main(int argc, char *argv[])
 		info("menu started in 'hidden' mode; show by `jgmenu_run`");
 	else
 		XMapRaised(ui->dpy, ui->w[ui->cur].win);
+
+	menu.sel = NULL;
 	draw_menu();
 
 	atexit(cleanup);
