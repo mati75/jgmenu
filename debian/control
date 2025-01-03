@@ -6,7 +6,7 @@ Standards-Version: 4.7.0
 Homepage: https://jgmenu.github.io/
 Build-Depends: debhelper-compat (= 13), libx11-dev, libxrandr-dev, libcairo2-dev,
  libpango1.0-dev, librsvg2-dev, libxml2-dev, libglib2.0-dev, libmenu-cache-dev,
- pkg-config, libgtk-3-dev, libxfce4panel-2.0-dev, libxfce4ui-2-dev
+ pkgconf, libgtk-3-dev, libxfce4panel-2.0-dev, libxfce4ui-2-dev
 Vcs-Git: https://github.com/mati75/jgmenu.git
 Vcs-Browser: https://github.com/mati75/jgmenu
 Rules-Requires-Root: no
